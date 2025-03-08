@@ -8,7 +8,7 @@ A responsive feedback portal with dynamic form handling using HTML, CSS, and Jav
 - Displays a thank-you message after submission.
 
 ## Demo
-[Live Demo](https://your-username.github.io/interactive-feedback-portal/)
+[Live Demo]([https://your-username.github.io](https://vaishnavid14.github.io/interactive-feedback-portal/)
 
 ## How to Use
 1. Select the type of feedback.
