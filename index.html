@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Feedback Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input, select, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .response {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e7f3e7;
+      border-left: 5px solid #28a745;
+      border-radius: 5px;
+    }
+    .response p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Feedback Portal</h1>
+    <form id="feedback-form">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter your name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+      </div>
+      <div class="form-group">
+        <label for="feedback-type">Type of Feedback:</label>
+        <select id="feedback-type">
+          <option value="general">General</option>
+          <option value="bug">Bug Report</option>
+          <option value="feature">Feature Request</option>
+        </select>
+      </div>
+      <div class="form-group" id="additional-info-group" style="display: none;">
+        <label for="additional-info">Additional Information:</label>
+        <textarea id="additional-info" placeholder="Provide additional details"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="message">Message:</label>
+        <textarea id="message" placeholder="Enter your feedback" required></textarea>
+      </div>
+      <button type="submit">Submit Feedback</button>
+    </form>
+
+    <div class="response" id="response" style="display: none;">
+      <p>Thank you for your feedback, <span id="response-name"></span>! We have received your message and will get back to you if necessary.</p>
+    </div>
+  </div>
+
+  <script>
+    const feedbackForm = document.getElementById('feedback-form');
+    const feedbackType = document.getElementById('feedback-type');
+    const additionalInfoGroup = document.getElementById('additional-info-group');
+    const responseDiv = document.getElementById('response');
+    const responseName = document.getElementById('response-name');
+
+    // Show or hide additional info based on feedback type
+    feedbackType.addEventListener('change', () => {
+      if (feedbackType.value === 'bug' || feedbackType.value === 'feature') {
+        additionalInfoGroup.style.display = 'block';
+      } else {
+        additionalInfoGroup.style.display = 'none';
+      }
+    });
+
+    // Handle form submission
+    feedbackForm.addEventListener('submit', (e) => {
+      e.preventDefault(); // Prevent page refresh
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+
+      // Display thank-you message
+      responseName.textContent = name;
+      responseDiv.style.display = 'block';
+
+      // Clear form fields
+      feedbackForm.reset();
+      additionalInfoGroup.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
